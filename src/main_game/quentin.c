@@ -95,7 +95,7 @@ main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph, char **nam
     char *save;
 
     m->rtex = sfRenderTexture_create(size.x, size.y, 0);
-    m->war = create_graphic_war((sfVector2f){size.x * 0.6, size.y}, graph);
+    m->war = create_graphic_war((sfVector2f){size.x * 0.5, size.y}, graph);
     my_memset(m->champ_names, 0, sizeof(sfText *) * 5);
     for (int i = 0; names[i]; i++) {
         tmp = my_strdup(names[i]);

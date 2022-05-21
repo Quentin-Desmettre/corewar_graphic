@@ -62,6 +62,7 @@ typedef struct header_s {
 typedef struct corewar_grap_s {
     char *winner_str;
     int nbr_cycle_max;
+    int current_cycle;
     char **bytes;
     char **color;
     int writing;
