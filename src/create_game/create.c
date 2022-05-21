@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "op.h"
 
 typedef struct {
     sfText *name;
@@ -238,7 +239,16 @@ char **get_selected_champions(play_t *p)
 void go_to_real_play(void *win)
 {
     window_t *w = win;
-    // ???
+    corewar_grap_t *graph = NULL;
+    char **av = get_selected_champions(w->menus[PLAY]);
+
+    graph = setup_game(3, av);
+    dump_print(graph->bytes[graph->nbr_cycle_max]);
+    write(1, "\n\n\n\n", 5);
+    dump_print(graph->color[graph->nbr_cycle_max]);
+    write(1, "\n\n\n\n", 5);
+    set_next_win_state(win, PLAY);
+    free_str_array(av, 1);
 }
 
 play_t *create_play(sfVector2f size)

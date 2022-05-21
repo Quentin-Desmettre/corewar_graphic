@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "op.h"
 
 void quit_main_menuu(void *win)
 {

@@ -144,7 +144,7 @@ char *set_map(champ_t **champ, char *map);
 /// @brief
 /// @param ac the number of arguments
 /// @param av a board with al the arguments
-void setup_game(int ac, char **av);
+corewar_grap_t *setup_game(int ac, char **av);
 
 // Instructions
 int i_live(int arg[3], champ_t *champ, char *arena);
@@ -258,7 +258,7 @@ champ_t **fork_list(void);
 /// @param champ the struct with all the champions
 /// @param need_dump if need a dump of not
 /// @param map the map to print if is a dump
-void check_alive_champ(champ_t **champ, int need_dump, char *map);
+char *check_alive_champ(champ_t **champ, int need_dump, char *map);
 
 /// @brief increase a counter
 void increase_counter(void);

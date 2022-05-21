@@ -59,6 +59,15 @@ typedef struct header_s {
     char comment[COMMENT_LENGTH + 1];
 } header_t;
 
+typedef struct corewar_grap_s {
+    char *winner_str;
+    int nbr_cycle_max;
+    char **bytes;
+    char **color;
+    int writing;
+} corewar_grap_t;
+
+
     #include "corewar.h"
     #define CYCLE_TO_DIE 1536
     #define CYCLE_DELTA 5

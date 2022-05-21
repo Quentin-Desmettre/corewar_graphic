@@ -6,10 +6,30 @@
 */
 
 #include "corewar_include/op.h"
+#define strndup noa_strndup
 
-void check_alive_champ(champ_t **champ, int need_dump, char *map)
+char *noa_strndup(char *src, size_t size)
+{
+    char *ans = malloc(sizeof(char) * size);
+
+    memcpy(ans, src, size);
+}
+
+corewar_grap_t **get_graph_struct(void)
+{
+    static corewar_grap_t *graph = NULL;
+
+    if (!graph) {
+        graph = malloc(sizeof(corewar_grap_t));
+        memset(graph, 0, sizeof(corewar_grap_t));
+    }
+    return (&graph);
+}
+
+char *check_alive_champ(champ_t **champ, int need_dump, char *map)
 {
     champ_t *head = *champ;
+    static char *result_string = "Le joueur ";
 
     while (head && !head->is_alive) {
         (*champ) = head->next;
@@ -24,13 +44,19 @@ void check_alive_champ(champ_t **champ, int need_dump, char *map)
     if (!(*champ) || get_alive_champs(*champ) == 1) {
         need_dump ? dump_print(map) : 0;
         head = last_to_live(NULL);
-        if (last_to_live(NULL))
-            print(MSG_WIN, head->param.champ_nbr, head->header.prog_name);
-        exit(0);
+        if (last_to_live(NULL)) {
+            append_char(&result_string, head->param.champ_nbr, 0);
+            append(&result_string, " (", 1);
+            append(&result_string, head->header.prog_name, 1);
+            append(&result_string, ") a gagné.", 1);
+            return (result_string);
+        }
+        return ("Draw");
     }
     all_champs(champ);
+    return NULL;
 }
-
+//print(MSG_WIN, head->param.champ_nbr, head->header.prog_name);
 static void add_forks(void)
 {
     champ_t **all = all_champs(NULL);
@@ -63,29 +89,51 @@ static void exec_champions(char *map, champ_t *champions)
     }
 }
 
-static void main_loop(char *map, champ_t *champions, int dump_cycle)
+static char **main_loop(char *map, champ_t *champions, int dump_cycle)
 {
     int nbr_cycle = CYCLE_TO_DIE;
     int current_cycle = 0;
     int need_dump = dump_cycle;
+    char *tmp = NULL;
+    corewar_grap_t **graph = get_graph_struct();
+    (*graph)->nbr_cycle_max = 0;
+    (*graph)->bytes = malloc(sizeof(char *) * (((*graph)->nbr_cycle_max) + 2));
 
+    (*graph)->bytes[(*graph)->nbr_cycle_max] = strndup(map, MEM_SIZE);
+    (*graph)->bytes[(*graph)->nbr_cycle_max + 1] = NULL;
+    (*graph)->nbr_cycle_max++;
     all_champs(&champions);
     while (dump_cycle != 0) {
+        (*graph)->color = realloc((*graph)->color, sizeof(char *) * ((*graph)->nbr_cycle_max + 3));
+        (*graph)->color[(*graph)->nbr_cycle_max] = strndup((*graph)->color[(*graph)->nbr_cycle_max - 1], MEM_SIZE);
+        (*graph)->color[(*graph)->nbr_cycle_max + 1] = NULL;
         exec_champions(map, champions);
         nbr_cycle = *get_cycle_to_die();
         dump_cycle > 0 ? dump_cycle-- : dump_cycle;
         current_cycle++;
         if (current_cycle >= nbr_cycle) {
-            check_alive_champ(&champions,
+            tmp = check_alive_champ(&champions,
             (need_dump != -1 && dump_cycle == 0 ? 1 : 0), map);
-            current_cycle = 0;
+            if (tmp) {
+                current_cycle = 0;
+                (*graph)->bytes = realloc((*graph)->bytes, sizeof(char *) * ((*graph)->nbr_cycle_max + 2));
+                (*graph)->bytes[(*graph)->nbr_cycle_max] = strndup(map, MEM_SIZE);
+                (*graph)->bytes[(*graph)->nbr_cycle_max + 1] = NULL;
+                (*graph)->winner_str = tmp;
+                return ((*graph)->bytes);
+            }
         }
         add_forks();
+        (*graph)->bytes = realloc((*graph)->bytes, sizeof(char *) * ((*graph)->nbr_cycle_max + 2));
+        (*graph)->bytes[(*graph)->nbr_cycle_max] = strndup(map, MEM_SIZE);
+        (*graph)->bytes[(*graph)->nbr_cycle_max + 1] = NULL;
+        (*graph)->nbr_cycle_max++;
     }
     need_dump != -1 ? dump_print(map) : 0;
+    return ((*graph)->bytes);
 }
 
-void setup_game(int ac, char **av)
+corewar_grap_t *setup_game(int ac, char **av)
 {
     int dump_cycle = -1;
     champ_t *info_champ = NULL;
@@ -96,4 +144,5 @@ void setup_game(int ac, char **av)
     map = set_map(&info_champ, map);
     setup_all_champ_for_game(&info_champ);
     main_loop(map, info_champ, dump_cycle);
+    return (*get_graph_struct());
 }
