@@ -75,7 +75,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = gcore
 
-CFLAGS = -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include
+CFLAGS = -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g
 
 LDFLAGS += -L lib/my/ -lmy -lcsfml-graphics -lcsfml-window \
 	-lcsfml-system -lcsfml-audio -lm

@@ -31,6 +31,24 @@ typedef struct {
     sfRenderTexture *rtex;
 } main_menu_tt;
 
+typedef struct {
+    sfRenderTexture *rtex;
+    sfSprite *box;
+    sfRectangleShape *select;
+    list_t *champs;
+    int *is_selected;
+    int nb_selected;
+    char **all_files;
+} champ_select_t;
+
+typedef struct {
+    sfSprite *logo;
+    sfText *choose;
+    button_t *buttons[2];
+    sfRenderTexture *rtex;
+    champ_select_t *select;
+} play_t;
+
 typedef struct win {
     sfVideoMode mode;
     sfRenderWindow *win;
@@ -51,8 +69,7 @@ typedef struct win {
 } window_t;
 
 typedef enum {
-    SETTINGS, HOME, EXIT, GAME, LIGHT,
-    SELECT_SAVE, CREATE_SAVE, FIGHT, CINE, END, HTP
+    SETTINGS, HOME, EXIT, PLAY
 } state_t;
 
 static const sfIntRect back_rect = {
@@ -126,5 +143,8 @@ void update_transition(window_t *win, sfSprite *s);
 window_t *window_create(void);
 window_t *window(window_t *ptr);
 void free_textures(void);
+void apply_settings(settings_t *se, window_t *win);
+play_t *create_play(sfVector2f size);
+const sfTexture *draw_play(window_t *win);
 
 #endif

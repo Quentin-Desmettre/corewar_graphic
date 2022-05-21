@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void apply_settings(settings_t *se, window_t *win);
+void play_events(window_t *win, sfEvent ev);
 
 static void create_basics(window_t *win)
 {
@@ -33,13 +33,13 @@ static void create_settings(window_t *win)
 static void create_pointers(window_t *win)
 {
     const sfTexture* (*dr[])(window_t *) = {
-        draw_settings, draw_main_menuu
+        draw_settings, draw_main_menuu, NULL, draw_play
     };
     void (*ev[])(window_t *, sfEvent) = {
-        settings_ev, main_menu_events
+        settings_ev, main_menu_events, NULL, play_events
     };
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 4; i++) {
         win->draw[i] = dr[i];
         win->event[i] = ev[i];
     }
@@ -55,5 +55,6 @@ window_t *window_create(void)
     create_settings(win);
     win->menus[HOME] = create_main_menuu(win_size(win));
     apply_settings(win->menus[SETTINGS], win);
+    win->menus[PLAY] = create_play(win_size(win));
     return win;
 }

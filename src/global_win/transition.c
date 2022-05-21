@@ -7,12 +7,18 @@
 
 #include "rpg.h"
 
+void destroy_create_play(play_t *p);
+
 static void switch_color_dir(window_t *win, int *dir)
 {
     win->state = win->next_state;
     *dir = -1;
     if (win->state == EXIT)
         sfRenderWindow_close(win->win);
+    if (win->state == HOME) {
+        destroy_create_play(win->menus[PLAY]);
+        win->menus[PLAY] = create_play(win_size(win));
+    }
 }
 
 static void reset_lum(window_t *win, int *dir, sfColor *lum)

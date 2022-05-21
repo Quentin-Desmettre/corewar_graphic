@@ -20,7 +20,7 @@ void go_to_settingss(void *win)
 void go_to_play(void *win)
 {
     // play
-    set_next_win_state(win, SELECT_SAVE);
+    set_next_win_state(win, PLAY);
 }
 
 void main_menu_events(window_t *win, sfEvent ev)
@@ -55,7 +55,7 @@ void rescale_main_menuu(main_menu_tt *m, sfVector2f size)
 
     set_sprite_size(m->corewar, size);
     center_sprite(m->logo);
-    set_sprite_size(m->logo, (sfVector2f){size.x * 0.3, size.y * 0.3});
+    set_sprite_size(m->logo, (sfVector2f){size.x * 0.3, size.x * 0.3 / 1.27848101266});
     sfSprite_setPosition(m->logo, (sfVector2f){size.x * 0.5, size.x * 0.13});
     for (int i = 0; i < 3; i++) {
         m->buttons[i]->container_size = size;
@@ -74,7 +74,6 @@ main_menu_tt *create_main_menuu(sfVector2f size)
     };
     void (*actions[3])(void *) = {quit_main_menuu, go_to_settingss, go_to_play};
     char *texts[3] = {"Quit", "Settings", "Play"};
-    char *textures[3] = {"assets/bars.png", "assets/bars.png", "assets/bars.png"};
 
     m->logo = init_sprite_from_texture(get_texture_by_name("assets/corewar.png"));
     center_sprite(m->logo);
