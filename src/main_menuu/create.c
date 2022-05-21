@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "op.h"
 
 void quit_main_menuu(void *win)
 {
@@ -20,6 +21,14 @@ void go_to_settingss(void *win)
 void go_to_play(void *win)
 {
     // play
+    corewar_grap_t *graph = NULL;
+    char *av[3] = {"./corewar", "cor/42.cor", "cor/42.cor"};
+
+    graph = setup_game(3, av);
+    dump_print(graph->bytes[graph->nbr_cycle_max]);
+    write(1, "\n\n\n\n", 5);
+    dump_print(graph->color[graph->nbr_cycle_max]);
+    write(1, "\n\n\n\n", 5);
     set_next_win_state(win, SELECT_SAVE);
 }
 

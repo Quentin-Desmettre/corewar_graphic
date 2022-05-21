@@ -47,7 +47,6 @@ SRC = \
 	src/sprite/rotate_vector.c                         \
 	src/sprite/sprite_modif.c                          \
 	src/main_menuu/create.c                            \
-	src/create_game/create.c                           \
 	corewar/args/arg_manage.c                          \
 	corewar/args/check_args.c                          \
 	corewar/args/check_champ.c                         \
@@ -75,7 +74,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = gcore
 
-CFLAGS = -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include
+CFLAGS = -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g
 
 LDFLAGS += -L lib/my/ -lmy -lcsfml-graphics -lcsfml-window \
 	-lcsfml-system -lcsfml-audio -lm
