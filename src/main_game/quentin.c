@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-#define CYCLE_PER_SEC 100
+#define CYCLE_PER_SEC 1000
 
 const sfTexture *draw_main_play(window_t *win)
 {
@@ -18,7 +18,9 @@ const sfTexture *draw_main_play(window_t *win)
     if (!c)
         c = sfClock_create();
     if (sfClock_getElapsedTime(c).microseconds > 1000000.0 / CYCLE_PER_SEC) {
-        m->current_cycle++;
+        if (m->war->graph->current_cycle < m->war->graph->nbr_cycle_max)
+            m->war->graph->current_cycle++;
+        sfClock_restart(c);
     }
 
     sfRenderTexture_clear(m->rtex, sfBlack);
@@ -62,6 +64,9 @@ void pause_cycle(void *win)
 
 void do_cycle_back(main_play_t *m)
 {
+    m->war->graph->current_cycle--;
+    if (m->war->graph->current_cycle < 0)
+        m->war->graph->current_cycle = 0;
 }
 
 void cycle_back(void *win)
@@ -76,6 +81,9 @@ void cycle_back(void *win)
 
 void do_cycle_front(main_play_t *m)
 {
+    m->war->graph->current_cycle++;
+    if (m->war->graph->current_cycle >= m->war->graph->nbr_cycle_max)
+        m->war->graph->current_cycle = m->war->graph->nbr_cycle_max - 1;
 }
 
 void cycle_front(void *win)
