@@ -79,6 +79,11 @@ typedef struct {
 typedef struct {
     graphic_war_t *war;
     sfRenderTexture *rtex;
+    button_t *buttons[3]; // cycle++, cycle--, play/pause
+    // cycle++, cycle-- mettent automatiquement en pause
+    sfSprite *box;
+    sfText *champ_names[4];
+    sfSprite *corewar;
 } main_play_t;
 
 typedef enum {
@@ -163,7 +168,7 @@ void draw_graph(graphic_war_t *g);
 void graph_ev(graphic_war_t *g, sfEvent ev);
 graphic_war_t *create_graphic_war(sfVector2f size, corewar_grap_t *graph);
 void main_play_ev(window_t *win, sfEvent ev);
-main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph);
+main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph, char **champs);
 const sfTexture *draw_main_play(window_t *win);
 
 #endif
