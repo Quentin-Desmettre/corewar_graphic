@@ -33,6 +33,6 @@ main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph)
     main_play_t *m = malloc(sizeof(main_play_t));
 
     m->rtex = sfRenderTexture_create(size.x, size.y, 0);
-    m->war = create_graphic_war((sfVector2f){size.x * 0.6, size.y}, graph);
+    m->war = create_graphic_war((sfVector2f){size.x * 0.5, size.y}, graph);
     return m;
 }
