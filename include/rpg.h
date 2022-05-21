@@ -16,6 +16,7 @@
     #include "inter_npc.h"
     #include "audio_builder.h"
     #include <math.h>
+    #include "op.h"
 
     #define ABS(x) ((x) < 0 ? -(x) : (x))
     #define REPEAT_DELAY 500000
@@ -68,8 +69,20 @@ typedef struct win {
     sfSound *close_sfx;
 } window_t;
 
+typedef struct {
+    sfRenderTexture *rtex;
+    corewar_grap_t *graph;
+    sfText *byte;
+    sfRectangleShape *rect;
+} graphic_war_t;
+
+typedef struct {
+    graphic_war_t *war;
+    sfRenderTexture *rtex;
+} main_play_t;
+
 typedef enum {
-    SETTINGS, HOME, EXIT, PLAY
+    SETTINGS, HOME, EXIT, PLAY, MAIN
 } state_t;
 
 static const sfIntRect back_rect = {
@@ -146,5 +159,11 @@ void free_textures(void);
 void apply_settings(settings_t *se, window_t *win);
 play_t *create_play(sfVector2f size);
 const sfTexture *draw_play(window_t *win);
+void draw_graph(graphic_war_t *g);
+void graph_ev(graphic_war_t *g, sfEvent ev);
+graphic_war_t *create_graphic_war(sfVector2f size, corewar_grap_t *graph);
+void main_play_ev(window_t *win, sfEvent ev);
+main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph);
+const sfTexture *draw_main_play(window_t *win);
 
 #endif

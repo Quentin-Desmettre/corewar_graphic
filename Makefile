@@ -69,7 +69,9 @@ SRC = \
 	corewar/cor_string_manip/arena_cor.c               \
 	corewar/cor_string_manip/cor_str.c                 \
 	corewar/globals.c                                  \
-	corewar/corewar.c
+	corewar/corewar.c                                  \
+	src/main_game/noa.c                                \
+	src/main_game/quentin.c
 
 OBJ = $(SRC:.c=.o)
 
