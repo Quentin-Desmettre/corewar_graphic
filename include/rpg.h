@@ -72,6 +72,7 @@ typedef struct win {
 typedef struct {
     sfRenderTexture *rtex;
     corewar_grap_t *graph;
+    sfView *view;
     sfText *byte;
     sfRectangleShape *rect;
 } graphic_war_t;
