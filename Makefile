@@ -47,6 +47,7 @@ SRC = \
 	src/sprite/rotate_vector.c                         \
 	src/sprite/sprite_modif.c                          \
 	src/main_menuu/create.c                            \
+	src/create_game/create.c                           \
 	corewar/args/arg_manage.c                          \
 	corewar/args/check_args.c                          \
 	corewar/args/check_champ.c                         \
@@ -61,12 +62,12 @@ SRC = \
 	corewar/instructions/i_conditions.c                \
 	corewar/instructions/i_load.c                      \
 	corewar/instructions/i_operations.c                \
-	corewar/instructions/i_store.c                     \
 	corewar/instructions/exec_instructions.c           \
 	corewar/instructions/replace_indirects.c           \
+	corewar/instructions/i_store.c                     \
 	corewar/glob.c                                     \
-	corewar/cor_string_manip/cor_str.c                 \
 	corewar/cor_string_manip/arena_cor.c               \
+	corewar/cor_string_manip/cor_str.c                 \
 	corewar/globals.c                                  \
 	corewar/corewar.c
 

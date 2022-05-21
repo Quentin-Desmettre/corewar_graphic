@@ -228,7 +228,8 @@ char **get_selected_champions(play_t *p)
     for (int i = 0; p->select->all_files[i] && nb < p->select->nb_selected; i++) {
         if (p->select->is_selected[i]) {
             selected[nb] = my_strdup(p->select->all_files[i]);
-            selected[nb][index_of('\n', selected[nb]) >= 0 ? index_of('\n', selected[nb]) : strlen(selected[nb])] = 0;
+            if (index_of('\n', selected[nb]) >= 0)
+                selected[nb][index_of('\n', selected[nb])] = 0;
             nb++;
         }
     }
