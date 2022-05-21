@@ -11,7 +11,7 @@ const sfTexture *draw_main_play(window_t *win)
 {
     main_play_t *m = win->menus[MAIN];
 
-    sfRenderTexture_clear(m->rtex, sfBlack);
+    sfRenderTexture_clear(m->rtex, sfWhite);
     draw_graph(m->war);
     sfSprite *s = init_sprite_from_texture(sfRenderTexture_getTexture(m->war->rtex));
 
