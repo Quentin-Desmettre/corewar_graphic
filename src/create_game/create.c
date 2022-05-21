@@ -222,10 +222,12 @@ void play_events(window_t *win, sfEvent ev)
 
 char **get_selected_champions(play_t *p)
 {
-    char **selected = malloc(sizeof(char *) * (p->select->nb_selected + 1));
+    char **selected = malloc(sizeof(char *) * (p->select->nb_selected + 2));
     int nb = 0;
 
-    for (int i = 0; p->select->all_files[i] && nb < p->select->nb_selected; i++) {
+    selected[0] = my_strdup("./corewar");
+    nb = 1;
+    for (int i = 0; p->select->all_files[i] && nb < p->select->nb_selected + 1; i++) {
         if (p->select->is_selected[i]) {
             selected[nb] = my_strdup(p->select->all_files[i]);
             if (index_of('\n', selected[nb]) >= 0)
@@ -233,7 +235,7 @@ char **get_selected_champions(play_t *p)
             nb++;
         }
     }
-    selected[p->select->nb_selected] = 0;
+    selected[p->select->nb_selected + 1] = 0;
     return selected;
 }
 
@@ -244,10 +246,6 @@ void go_to_real_play(void *win)
     char **av = get_selected_champions(w->menus[PLAY]);
 
     graph = setup_game(my_str_array_len(av), av);
-    dump_print(graph->bytes[graph->nbr_cycle_max]);
-    write(1, "\n\n\n\n", 5);
-    dump_print(graph->color[graph->nbr_cycle_max]);
-    write(1, "\n\n\n\n", 5);
     set_next_win_state(win, PLAY);
     free_str_array(av, 1);
 }
