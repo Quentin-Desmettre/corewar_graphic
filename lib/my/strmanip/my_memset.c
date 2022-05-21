@@ -22,6 +22,15 @@ void my_memset(void *what, int c, int n)
         cp[i] = c;
 }
 
+void my_memcpy(void *dest, void *source, size_t size)
+{
+    char *a = dest;
+    char *b = source;
+
+    for (size_t i = 0; i < size; i++)
+        a[i] = b[i];
+}
+
 void free_str_array(char **array, int include_null)
 {
     int i = 0;
