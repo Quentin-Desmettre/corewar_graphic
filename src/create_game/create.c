@@ -242,7 +242,7 @@ void go_to_real_play(void *win)
     corewar_grap_t *graph = NULL;
     char **av = get_selected_champions(w->menus[PLAY]);
 
-    graph = setup_game(3, av);
+    graph = setup_game(my_str_array_len(av), av);
     dump_print(graph->bytes[graph->nbr_cycle_max]);
     write(1, "\n\n\n\n", 5);
     dump_print(graph->color[graph->nbr_cycle_max]);
