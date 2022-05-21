@@ -83,8 +83,10 @@ typedef struct {
     button_t *buttons[3]; // cycle++, cycle--, play/pause
     // cycle++, cycle-- mettent automatiquement en pause
     sfSprite *box;
-    sfText *champ_names[4];
+    sfText *champ_names[5];
     sfSprite *corewar;
+    int is_paused;
+    int current_cycle;
 } main_play_t;
 
 typedef enum {

@@ -247,8 +247,8 @@ void go_to_real_play(void *win)
 
     graph = setup_game(my_str_array_len(av), av);
     set_next_win_state(win, MAIN);
+    w->menus[MAIN] = create_main_play(win_size(w), graph, av + 1);
     free_str_array(av, 1);
-    w->menus[MAIN] = create_main_play(win_size(w), graph);
 }
 
 play_t *create_play(sfVector2f size)
