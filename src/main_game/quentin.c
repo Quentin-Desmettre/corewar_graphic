@@ -24,6 +24,8 @@ void update_cycles(main_play_t *m)
     sfText_setString(m->cycle_to_die, tmp);
     free(tmp);
     free(tmp2);
+    center_text(m->cycle_to_die);
+    center_text(m->cycle);
 }
 
 const sfTexture *draw_main_play(window_t *win)
@@ -51,7 +53,7 @@ const sfTexture *draw_main_play(window_t *win)
     sfSprite_destroy(s);
 
     for (int i = 0; m->champ_names[i]; i++) {
-        sfSprite_setPosition(m->box, (sfVector2f){size.x * 0.65, size.y * 0.03 + size.y * 0.17 * i});
+        sfSprite_setPosition(m->box, (sfVector2f){size.x * 0.85, size.y * 0.09 + size.y * 0.17 * i});
         sfRenderTexture_drawSprite(m->rtex, m->box, NULL);
         sfText_setFillColor(m->champ_names[i], m->war->graph->is_dead[m->war->graph->current_cycle][i] ? sfRed : sfGreen);
         sfRenderTexture_drawText(m->rtex, m->champ_names[i], NULL);
@@ -143,13 +145,14 @@ main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph, char **nam
         sfText_setPosition(m->champ_names[i], (sfVector2f){size.x * 0.65 + size.x * 0.15, size.y * 0.03 + size.y * 0.17 * i + size.y * 0.06});
     }
     m->box = init_sprite_from_texture(get_texture_by_name("assets/box.png"));
-    set_sprite_size(m->box, (sfVector2f){size.x * 0.3, size.y * 0.12});
+    set_sprite_size(m->box, (sfVector2f){size.x * 0.27, size.y * 0.12});
+    center_sprite(m->box);
 
     sfVector2f size_fac[3] = {
-        {0.1, 0.1}, {0.15, 0.1}, {0.1, 0.1}
+        {0.07, 0.07}, {0.12, 0.07}, {0.07, 0.07}
     };
     sfVector2f pos_fac[3] = {
-        {0.65, 0.9}, {0.8, 0.9}, {0.95, 0.9}
+        {0.75, 0.915}, {0.85, 0.915}, {0.95, 0.915}
     };
     char *texts[3] = {"<<", "Pause", ">>"};
     void (*actions[3])(void *) = {cycle_back, pause_cycle, cycle_front};
@@ -163,13 +166,15 @@ main_play_t *create_main_play(sfVector2f size, corewar_grap_t *graph, char **nam
     center_text(m->winner);
     sfText_setPosition(m->winner, (sfVector2f){size.x * 0.5, size.y * 0.5});
 
-    m->cycle_to_die = init_text("0", size.y * 0.04);
-    m->cycle = init_text("0", size.y * 0.04);
-    sfText_setPosition(m->cycle, (sfVector2f){size.x * 0.65, size.y * 0.7});
-    sfText_setPosition(m->cycle_to_die, (sfVector2f){size.x * 0.65, size.y * 0.77});
+    m->cycle_to_die = init_text("0", size.y * 0.031);
+    m->cycle = init_text("0", size.y * 0.031);
+    center_text(m->cycle_to_die);
+    center_text(m->cycle);
+    sfText_setPosition(m->cycle, (sfVector2f){size.x * 0.85, size.y * 0.72});
+    sfText_setPosition(m->cycle_to_die, (sfVector2f){size.x * 0.85, size.y * 0.8});
     sfText_setOutlineColor(m->cycle, sfBlack);
-    sfText_setOutlineThickness(m->cycle, size.y * 0.04 * 0.2);
+    sfText_setOutlineThickness(m->cycle, size.y * 0.027 * 0.2);
     sfText_setOutlineColor(m->cycle_to_die, sfBlack);
-    sfText_setOutlineThickness(m->cycle_to_die, size.y * 0.04 * 0.2);
+    sfText_setOutlineThickness(m->cycle_to_die, size.y * 0.027 * 0.2);
     return m;
 }

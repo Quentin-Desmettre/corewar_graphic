@@ -17,7 +17,7 @@ void set_selector_color(graphic_war_t *g, int color)
 
 void set_square_color(graphic_war_t *g, int index)
 {
-    sfColor colors[5] = {sfBlack, {0, 69, 18, 255}, {59, 0, 54, 255}, {1, 0, 89, 255}, {61, 0, 1, 255}};
+    sfColor colors[5] = {sfBlack, {0, 69, 18 * 2, 255}, {59 * 2, 0, 54 * 2, 255}, {1, 0, 89 * 2, 255}, {61 * 2, 0, 1, 255}};
     int color = g->graph->color[g->graph->current_cycle][index];
 
     if (color >= 10)
@@ -49,8 +49,8 @@ void draw_graph(graphic_war_t *g)
     float offset = size.y - (size.x / 8.0 * 96);
     sfVector2f pos = {0, offset / 2};
 
-    for (int j = 0; j < 96; j++) {
-        for (int i = 0; i < 64; i++) {
+    for (int j = 0; j < 64; j++) {
+        for (int i = 0; i < 96; i++) {
             set_square_color(g, index);
             set_letter(g, index);
             sfText_setPosition(g->byte, (sfVector2f){pos.x + 5, pos.y + 5});
