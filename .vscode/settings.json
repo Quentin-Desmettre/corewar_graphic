@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.c": "c",
-        "button.h": "c",
-        "rpg.h": "c",
-        "inter_npc.h": "c"
-    }
-}
