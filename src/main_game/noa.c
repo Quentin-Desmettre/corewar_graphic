@@ -21,6 +21,12 @@ void set_letter(graphic_war_t *g, int index)
     unsigned char letters = g->graph->bytes[g->graph->current_cycle][index];
     char *str = unsigned_to_str_base(letters, "0123456789ABCDEF");
 
+    if (strlen(str) == 1) {
+        str = realloc(str, 3);
+        str[1] = str[0];
+        str[0] = '0';
+        str[2] = '\0';
+    }
     sfText_setString(g->byte, str);
     free(str);
 }
@@ -30,22 +36,22 @@ void draw_graph(graphic_war_t *g)
     int index = 0;
     sfRenderTexture_clear(g->rtex, sfBlack);
     sfVector2u size = sfRenderTexture_getSize(g->rtex);
-    float offset = size.y - (size.x / 64.0 * 96);
+    float offset = size.y - (size.x / 8.0 * 96);
     sfVector2f pos = {0, offset / 2};
 
     for (int j = 0; j < 96; j++) {
         for (int i = 0; i < 64; i++) {
             set_square_color(g, index);
             set_letter(g, index);
-            sfText_setPosition(g->byte, pos);
+            sfText_setPosition(g->byte, (sfVector2f){pos.x + 5, pos.y + 5});
             sfRectangleShape_setPosition(g->rect, pos);
             sfRenderTexture_drawRectangleShape(g->rtex, g->rect, 0);
             sfRenderTexture_drawText(g->rtex, g->byte, 0);
-            pos.x += size.x / 64.0;
+            pos.x += size.x / 4.0;
             index++;
         }
         pos.x = 0;
-        pos.y += size.x / 64.0;
+        pos.y += size.x / 4.0;
     }
     sfRenderTexture_display(g->rtex);
 }
@@ -60,33 +66,36 @@ void camera_move_mouse(graphic_war_t *g)
         g->oldMousePos = sfMouse_getPositionRenderWindow(windows);
     pos = (sfVector2f) {(float)g->oldMousePos.x -
     (float)mpos.x, (float)g->oldMousePos.y - (float)mpos.y};
-    sfView_move(g->view,
-    (sfVector2f){pos.x * 2.2, pos.y * 2.2});
-    g->oldMousePos =
-    sfMouse_getPositionRenderWindow(windows);
+    sfView_move(g->view, (sfVector2f){pos.x * 2.2, pos.y * 2.2});
+    g->oldMousePos = sfMouse_getPositionRenderWindow(windows);
 }
 
 void ingame_zoom(graphic_war_t *g, sfEvent ev)
 {
-    static int zoom_ratio = 0;
-
     if (ev.type != sfEvtMouseWheelScrolled) {
         sfRenderTexture_setView(g->rtex, g->view);
         return;
     }
-    if (ev.mouseWheelScroll.delta < 0.0 && zoom_ratio < 2) {
-        zoom_ratio += 1;
+    if (ev.mouseWheelScroll.delta < 0.0)
         sfView_zoom(g->view, (float)(1.0 / 1.1));
-    } else if (ev.mouseWheelScroll.delta > 0.0 && zoom_ratio > -8) {
-        zoom_ratio -= 1;
+    else if (ev.mouseWheelScroll.delta > 0.0)
         sfView_zoom(g->view, (float)1.1);
-    }
     sfRenderTexture_setView(g->rtex, g->view);
 }
 
 void graph_ev(graphic_war_t *g, sfEvent ev)
 {
-    camera_move_mouse(g);
+    static int need_moove = 0;
+    if (ev.type == sfEvtMouseButtonPressed &&
+        ev.mouseButton.button == sfMouseLeft)
+        need_moove = 1;
+    if (ev.type == sfEvtMouseButtonReleased &&
+        ev.mouseButton.button == sfMouseLeft) {
+        g->oldMousePos = (sfVector2i){0, 0};
+        need_moove = 0;
+        }
+    if (need_moove)
+        camera_move_mouse(g);
     ingame_zoom(g, ev);
 }
 
@@ -96,12 +105,16 @@ graphic_war_t *create_graphic_war(sfVector2f size, corewar_grap_t *graph)
 
     g->rtex = sfRenderTexture_create(size.x, size.y, 0);
     g->view = sfView_copy(sfRenderTexture_getView(g->rtex));
+    sfRenderTexture_setView(g->rtex, g->view);
     graph->current_cycle = 0;
     g->graph = graph;
-    g->byte = init_text("", (size.x / 64) / 1.5);
-    g->rect = create_rectangle((sfVector2f){size.x / 64, size.x / 64}, sfRed, 0, sfBlack);
+    g->byte = init_text("", (size.x / 8) / 1.5);
+    g->rect = create_rectangle((sfVector2f){size.x / 8, size.x / 8}, sfRed, 15, sfWhite);
     sfRectangleShape_setPosition(g->rect, (sfVector2f){0, 0});
     sfText_setColor(g->byte, sfWhite);
     g->oldMousePos = (sfVector2i){0, 0};
+    sfView_zoom(g->view, (float)25);
+    sfView_move(g->view, (sfVector2f){size.x * 5, size.y * 5});
+    sfRenderTexture_setView(g->rtex, g->view);
     return (g);
 }

@@ -20,6 +20,7 @@
     #define REG_NUMBER 16
     #include <unistd.h>
     #include <fcntl.h>
+    #include <string.h>
     #include "libmy.h"
     #define GET_BYTE(x) (((x)) % MEM_SIZE)
 
@@ -99,5 +100,7 @@ static const op_t op_tab[] = {
     {"aff", 1, {T_REG}, 16, 2, "aff"},
     {0, 0, {0}, 0, 0, 0}
 };
+
+corewar_grap_t **get_graph_struct(void);
 
 #endif

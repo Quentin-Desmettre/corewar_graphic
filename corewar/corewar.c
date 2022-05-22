@@ -13,6 +13,7 @@ char *noa_strndup(char *src, size_t size)
     char *ans = malloc(sizeof(char) * size);
 
     memcpy(ans, src, size);
+    return (ans);
 }
 
 corewar_grap_t **get_graph_struct(void)
@@ -56,7 +57,7 @@ char *check_alive_champ(champ_t **champ, int need_dump, char *map)
     all_champs(champ);
     return NULL;
 }
-//print(MSG_WIN, head->param.champ_nbr, head->header.prog_name);
+
 static void add_forks(void)
 {
     champ_t **all = all_champs(NULL);
