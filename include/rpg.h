@@ -75,6 +75,7 @@ typedef struct {
     sfView *view;
     sfText *byte;
     sfRectangleShape *rect;
+    sfVector2i oldMousePos;
 } graphic_war_t;
 
 typedef struct {
