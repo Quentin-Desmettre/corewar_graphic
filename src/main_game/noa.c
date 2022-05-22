@@ -76,7 +76,7 @@ void camera_move_mouse(graphic_war_t *g)
         g->oldMousePos = sfMouse_getPositionRenderWindow(windows);
     pos = (sfVector2f) {(float)g->oldMousePos.x -
     (float)mpos.x, (float)g->oldMousePos.y - (float)mpos.y};
-    sfView_move(g->view, (sfVector2f){pos.x * 2.2, pos.y * 2.2});
+    sfView_move(g->view, (sfVector2f){pos.x * g->zoom, pos.y * g->zoom});
     g->oldMousePos = sfMouse_getPositionRenderWindow(windows);
 }
 
@@ -86,10 +86,14 @@ void ingame_zoom(graphic_war_t *g, sfEvent ev)
         sfRenderTexture_setView(g->rtex, g->view);
         return;
     }
-    if (ev.mouseWheelScroll.delta < 0.0)
+    if (ev.mouseWheelScroll.delta < 0.0) {
         sfView_zoom(g->view, (float)(1.0 / 1.1));
-    else if (ev.mouseWheelScroll.delta > 0.0)
+        g->zoom *= (float)(1.0 / 1.1);
+    }
+    else if (ev.mouseWheelScroll.delta > 0.0) {
         sfView_zoom(g->view, (float)1.1);
+        g->zoom *= 1.1;
+    }
     sfRenderTexture_setView(g->rtex, g->view);
 }
 
@@ -126,5 +130,6 @@ graphic_war_t *create_graphic_war(sfVector2f size, corewar_grap_t *graph)
     sfView_zoom(g->view, (float)25);
     sfView_move(g->view, (sfVector2f){size.x * 5, size.y * 5});
     sfRenderTexture_setView(g->rtex, g->view);
+    g->zoom = 25;
     return (g);
 }
