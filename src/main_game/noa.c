@@ -8,12 +8,22 @@
 #include "rpg.h"
 #include "op.h"
 
-void set_square_color(graphic_war_t *g, int index)
+void set_selector_color(graphic_war_t *g, int color)
 {
-    sfColor colors[5] = {sfBlack, sfBlue, sfRed, sfGreen, sfMagenta};
-    int color = g->graph->color[g->graph->current_cycle][index];
+    sfColor colors[4] = {{0, 255, 68, 255}, {255, 0, 234, 255}, {0, 200, 255, 255}, {255, 0, 4, 255}};
 
     sfRectangleShape_setFillColor(g->rect, colors[color]);
+}
+
+void set_square_color(graphic_war_t *g, int index)
+{
+    sfColor colors[5] = {sfBlack, {0, 69, 18, 255}, {59, 0, 54, 255}, {1, 0, 89, 255}, {61, 0, 1, 255}};
+    int color = g->graph->color[g->graph->current_cycle][index];
+
+    if (color >= 10)
+        set_selector_color(g, color - 11);
+    else
+        sfRectangleShape_setFillColor(g->rect, colors[color]);
 }
 
 void set_letter(graphic_war_t *g, int index)
@@ -47,11 +57,11 @@ void draw_graph(graphic_war_t *g)
             sfRectangleShape_setPosition(g->rect, pos);
             sfRenderTexture_drawRectangleShape(g->rtex, g->rect, 0);
             sfRenderTexture_drawText(g->rtex, g->byte, 0);
-            pos.x += size.x / 4.0;
+            pos.x += size.x / 7.0;
             index++;
         }
         pos.x = 0;
-        pos.y += size.x / 4.0;
+        pos.y += size.x / 7.0;
     }
     sfRenderTexture_display(g->rtex);
 }
@@ -109,7 +119,7 @@ graphic_war_t *create_graphic_war(sfVector2f size, corewar_grap_t *graph)
     graph->current_cycle = 0;
     g->graph = graph;
     g->byte = init_text("", (size.x / 8) / 1.5);
-    g->rect = create_rectangle((sfVector2f){size.x / 8, size.x / 8}, sfRed, 15, sfWhite);
+    g->rect = create_rectangle((sfVector2f){size.x / 8, size.x / 8}, sfRed, 0, sfWhite);
     sfRectangleShape_setPosition(g->rect, (sfVector2f){0, 0});
     sfText_setColor(g->byte, sfWhite);
     g->oldMousePos = (sfVector2i){0, 0};

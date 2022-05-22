@@ -90,6 +90,17 @@ static void exec_champions(char *map, champ_t *champions)
     }
 }
 
+static void add_champ_pc(champ_t *champions, char *str)
+{
+    champ_t *save = champions;
+
+    while (save) {
+        str[save->pc] = 10;
+        str[save->pc] += save->param.champ_nbr;
+        save = save->next;
+    }
+}
+
 static char **main_loop(char *map, champ_t *champions, int dump_cycle)
 {
     int nbr_cycle = CYCLE_TO_DIE;
@@ -107,6 +118,7 @@ static char **main_loop(char *map, champ_t *champions, int dump_cycle)
     while (dump_cycle != 0) {
         (*graph)->color = realloc((*graph)->color, sizeof(char *) * ((*graph)->nbr_cycle_max + 3));
         (*graph)->color[(*graph)->nbr_cycle_max] = strndup((*graph)->color[(*graph)->nbr_cycle_max - 1], MEM_SIZE);
+        add_champ_pc(champions, (*graph)->color[(*graph)->nbr_cycle_max - 1]);
         (*graph)->color[(*graph)->nbr_cycle_max + 1] = NULL;
         exec_champions(map, champions);
         nbr_cycle = *get_cycle_to_die();
