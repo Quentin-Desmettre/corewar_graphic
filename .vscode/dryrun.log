@@ -1,0 +1,72 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/qdes/Epitech/Tek1/CPE/corewar_graphic'
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/build_button.o src/button/build_button.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/button.o src/button/button.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/change_button.o src/button/change_button.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/get_button_ev.o src/button/get_button_ev.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/setters.o src/button/setters.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/button/setters_next.o src/button/setters_next.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/clock/clock_list.o src/clock/clock_list.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/clock/my_clock.o src/clock/my_clock.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/clock/time.o src/clock/time.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/free.o src/free.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/global_win/init_window.o src/global_win/init_window.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/global_win/rescale_all.o src/global_win/rescale_all.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/global_win/transition.o src/global_win/transition.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/globals/fonts.o src/globals/fonts.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/globals/pnj.o src/globals/pnj.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/globals/sounds.o src/globals/sounds.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/globals/texture.o src/globals/texture.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/globals/window.o src/globals/window.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/line_edit/create.o src/line_edit/create.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/line_edit/events.o src/line_edit/events.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/main.o src/main.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/rand/srand.o src/rand/srand.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/apply.o src/settings/apply.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/checkbox.o src/settings/checkbox.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/destroy.o src/settings/destroy.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/load.o src/settings/load.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/move_settings.o src/settings/move_settings.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/rendering_evt.o src/settings/rendering_evt.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/save.o src/settings/save.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/scale_settings.o src/settings/scale_settings.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/set_evt.o src/settings/set_evt.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/set_evt_manager.o src/settings/set_evt_manager.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/settings.o src/settings/settings.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/sound_evt.o src/settings/sound_evt.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/settings/visu_updates.o src/settings/visu_updates.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/sound_builder/build_music.o src/sound_builder/build_music.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/sound_builder/build_sfx.o src/sound_builder/build_sfx.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/sprite/init_sprite.o src/sprite/init_sprite.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/sprite/rotate_vector.o src/sprite/rotate_vector.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/sprite/sprite_modif.o src/sprite/sprite_modif.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/main_menuu/create.o src/main_menuu/create.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/create_game/create.o src/create_game/create.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/args/arg_manage.o corewar/args/arg_manage.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/args/check_args.o corewar/args/check_args.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/args/check_champ.o corewar/args/check_champ.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/args/num_champ.o corewar/args/num_champ.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/champ/read_check_header.o corewar/champ/read_check_header.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/champ/sort_champ.o corewar/champ/sort_champ.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/champ/create_champ.o corewar/champ/create_champ.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/convert_endian.o corewar/convert_endian.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/check_instruction.o corewar/instructions/check_instruction.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/instructions_manager.o corewar/instructions/instructions_manager.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/i_misc.o corewar/instructions/i_misc.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/i_conditions.o corewar/instructions/i_conditions.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/i_load.o corewar/instructions/i_load.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/i_operations.o corewar/instructions/i_operations.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/exec_instructions.o corewar/instructions/exec_instructions.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/replace_indirects.o corewar/instructions/replace_indirects.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/instructions/i_store.o corewar/instructions/i_store.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/glob.o corewar/glob.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/cor_string_manip/arena_cor.o corewar/cor_string_manip/arena_cor.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/cor_string_manip/cor_str.o corewar/cor_string_manip/cor_str.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/globals.o corewar/globals.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o corewar/corewar.o corewar/corewar.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/main_game/noa.o src/main_game/noa.c
+cc -Wall -Wextra -I ./include/ -I lib/my/include/ -I include/corewar_include -g   -c -o src/main_game/quentin.o src/main_game/quentin.c
+make -s -C lib/my/
+gcc -o gcore  src/button/build_button.o src/button/button.o src/button/change_button.o src/button/get_button_ev.o src/button/setters.o src/button/setters_next.o src/clock/clock_list.o src/clock/my_clock.o src/clock/time.o src/free.o src/global_win/init_window.o src/global_win/rescale_all.o src/global_win/transition.o src/globals/fonts.o src/globals/pnj.o src/globals/sounds.o src/globals/texture.o src/globals/window.o src/line_edit/create.o src/line_edit/events.o src/main.o src/rand/srand.o src/settings/apply.o src/settings/checkbox.o src/settings/destroy.o src/settings/load.o src/settings/move_settings.o src/settings/rendering_evt.o src/settings/save.o src/settings/scale_settings.o src/settings/set_evt.o src/settings/set_evt_manager.o src/settings/settings.o src/settings/sound_evt.o src/settings/visu_updates.o src/sound_builder/build_music.o src/sound_builder/build_sfx.o src/sprite/init_sprite.o src/sprite/rotate_vector.o src/sprite/sprite_modif.o src/main_menuu/create.o src/create_game/create.o corewar/args/arg_manage.o corewar/args/check_args.o corewar/args/check_champ.o corewar/args/num_champ.o corewar/champ/read_check_header.o corewar/champ/sort_champ.o corewar/champ/create_champ.o corewar/convert_endian.o corewar/instructions/check_instruction.o corewar/instructions/instructions_manager.o corewar/instructions/i_misc.o corewar/instructions/i_conditions.o corewar/instructions/i_load.o corewar/instructions/i_operations.o corewar/instructions/exec_instructions.o corewar/instructions/replace_indirects.o corewar/instructions/i_store.o corewar/glob.o corewar/cor_string_manip/arena_cor.o corewar/cor_string_manip/cor_str.o corewar/globals.o corewar/corewar.o src/main_game/noa.o src/main_game/quentin.o -L lib/my/ -lmy -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm
+make: Leaving directory '/home/qdes/Epitech/Tek1/CPE/corewar_graphic'
+ 
